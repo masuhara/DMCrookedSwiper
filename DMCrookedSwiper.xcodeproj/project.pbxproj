@@ -480,6 +480,7 @@
 				AF4BF01F194CA02B00FADD44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AF4BF020194CA02B00FADD44 /* Build configuration list for PBXNativeTarget "DMCrookedSwiperTests" */ = {
 			isa = XCConfigurationList;
@@ -488,6 +489,7 @@
 				AF4BF022194CA02B00FADD44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

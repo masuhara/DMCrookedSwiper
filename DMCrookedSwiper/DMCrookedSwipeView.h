@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface DMCrookedSwipeView : UIView
+<UIGestureRecognizerDelegate>
+{
+    float moveX;
+    float moveY;
+}
 
-extern const float kWidth;
-extern const float kHeight;
-
-
-- (void)makeView;
 
 @end

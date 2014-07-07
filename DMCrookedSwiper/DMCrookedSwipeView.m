@@ -10,8 +10,6 @@
 
 @implementation DMCrookedSwipeView
 
-const float kWidth = 300;
-const float kHeight = 300;
 
 
 #pragma mark - init
@@ -19,9 +17,8 @@ const float kHeight = 300;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        /* -- ビューの作成 -- */
         [self makeView];
-
     }
     return self;
 }
@@ -31,70 +28,106 @@ const float kHeight = 300;
 - (void)makeView
 {
     /* 時計回りに45度回転 */
-    CGRect rect = [[UIScreen mainScreen] applicationFrame];
-    NSLog(@"%@", NSStringFromCGRect(rect));
-    float x = rect.size.width/2;
-    float y = rect.size.height/2;
-    self.center = CGPointMake(x, y);
     CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI/4);
     [self setTransform:transform];
-    
-    NSLog(@"hoge");
-    
-    /* ビューを作成 */
-    CGRect baseRect = CGRectMake(0, 0, kWidth, kHeight);
-    UIView *baseView = [[UIView alloc]initWithFrame:baseRect];
-    baseView.backgroundColor = [UIColor blueColor];
-    [self addSubview:baseView];
     
     /* 左上スワイプ */
     UISwipeGestureRecognizer *swipeLeftGesture =
     [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeLeft:)];
     swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
-    [baseView addGestureRecognizer:swipeLeftGesture];
+    [self addGestureRecognizer:swipeLeftGesture];
     
     /* 右上スワイプ */
     UISwipeGestureRecognizer *swipeUpwardGesture =
     [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeUpward:)];
     swipeUpwardGesture.direction = UISwipeGestureRecognizerDirectionUp;
-    [baseView addGestureRecognizer:swipeUpwardGesture];
+    [self addGestureRecognizer:swipeUpwardGesture];
     
     /* 左下スワイプ */
     UISwipeGestureRecognizer *swipeDownwardGesture =
     [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeDownward:)];
     swipeDownwardGesture.direction = UISwipeGestureRecognizerDirectionDown;
-    [baseView addGestureRecognizer:swipeDownwardGesture];
+    [self addGestureRecognizer:swipeDownwardGesture];
     
     
     /* 右下スワイプ */
     UISwipeGestureRecognizer *swipeRightGesture =
     [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeRight:)];
     swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
-    [baseView addGestureRecognizer:swipeRightGesture];
+    [self addGestureRecognizer:swipeRightGesture];
 }
 
 #pragma mark - Gesture
 
 - (void)swipeUpward:(UISwipeGestureRecognizer *)sender
 {
-    NSLog(@"右上");
+    NSDictionary *dic = [NSDictionary dictionaryWithObject:sender.view forKey:@"view"];
+    
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(moveMarbles:) userInfo:dic repeats:YES];
+    [timer fire];
+    
+    sender.view.tag = 1;
+}
+
+- (void)swipeRight:(UISwipeGestureRecognizer *)sender
+{
+    NSDictionary *dic = [NSDictionary dictionaryWithObject:sender.view forKey:@"view"];
+    
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(moveMarbles:) userInfo:dic repeats:YES];
+    [timer fire];
+    
+    sender.view.tag = 2;
+    
 }
 
 - (void)swipeDownward:(UISwipeGestureRecognizer *)sender
 {
-    NSLog(@"左下");
+    NSDictionary *dic = [NSDictionary dictionaryWithObject:sender.view forKey:@"view"];
+    
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(moveMarbles:) userInfo:dic repeats:YES];
+    [timer fire];
+    
+    sender.view.tag = 3;
 }
 
 
 - (void)swipeLeft:(UISwipeGestureRecognizer *)sender
 {
-    NSLog(@"左上");
+    NSDictionary *dic = [NSDictionary dictionaryWithObject:sender.view forKey:@"view"];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(moveMarbles:) userInfo:dic repeats:YES];
+    [timer fire];
+    
+    sender.view.tag = 4;
 }
 
 
-- (void)swipeRight:(UISwipeGestureRecognizer *)sender
+
+
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-    NSLog(@"右下");
+    /* ジェスチャーの同時認識を可能に */
+    return YES;
+}
+
+
+
+- (void)moveMarbles:(NSTimer *)timer
+{
+    NSDictionary *dic = [timer userInfo];
+    DMCrookedSwipeView *swipedView = [dic objectForKey:@"view"];
+    moveX = 5;
+    moveY = 5;
+    
+    if (swipedView.tag == 1) {
+        swipedView.center = CGPointMake(swipedView.center.x + moveX, swipedView.center.y - moveY);
+    }else if (swipedView.tag == 2){
+        swipedView.center = CGPointMake(swipedView.center.x + moveX, swipedView.center.y + moveY);
+    }else if (swipedView.tag == 3){
+        swipedView.center = CGPointMake(swipedView.center.x - moveX, swipedView.center.y + moveY);
+    }else if (swipedView.tag == 4){
+        swipedView.center = CGPointMake(swipedView.center.x - moveX, swipedView.center.y - moveY);
+    }
 }
 
 
