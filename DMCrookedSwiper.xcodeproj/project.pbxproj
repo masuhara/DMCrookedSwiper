@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF00C68D196B0DE9009D70E3 /* haikei02.png in Resources */ = {isa = PBXBuildFile; fileRef = AF00C68C196B0DE9009D70E3 /* haikei02.png */; };
 		AF4BEFEC194CA02B00FADD44 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF4BEFEB194CA02B00FADD44 /* Foundation.framework */; };
 		AF4BEFEE194CA02B00FADD44 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF4BEFED194CA02B00FADD44 /* CoreGraphics.framework */; };
 		AF4BEFF0194CA02B00FADD44 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF4BEFEF194CA02B00FADD44 /* UIKit.framework */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AF00C68C196B0DE9009D70E3 /* haikei02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = haikei02.png; sourceTree = "<group>"; };
 		AF4BEFE8194CA02A00FADD44 /* DMCrookedSwiper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DMCrookedSwiper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF4BEFEB194CA02B00FADD44 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AF4BEFED194CA02B00FADD44 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -117,6 +119,7 @@
 		AF4BEFF1194CA02B00FADD44 /* DMCrookedSwiper */ = {
 			isa = PBXGroup;
 			children = (
+				AF00C68C196B0DE9009D70E3 /* haikei02.png */,
 				AF4BEFFA194CA02B00FADD44 /* AppDelegate.h */,
 				AF4BEFFB194CA02B00FADD44 /* AppDelegate.m */,
 				AF4BEFFD194CA02B00FADD44 /* Main_iPhone.storyboard */,
@@ -238,6 +241,7 @@
 			files = (
 				AF4BF002194CA02B00FADD44 /* Main_iPad.storyboard in Resources */,
 				AF4BF007194CA02B00FADD44 /* Images.xcassets in Resources */,
+				AF00C68D196B0DE9009D70E3 /* haikei02.png in Resources */,
 				AF4BEFFF194CA02B00FADD44 /* Main_iPhone.storyboard in Resources */,
 				AF4BEFF6194CA02B00FADD44 /* InfoPlist.strings in Resources */,
 			);

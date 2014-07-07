@@ -27,6 +27,10 @@
 
 - (void)makeView
 {
+    //動く速度
+    moveX = 5;
+    moveY = 5;
+    
     /* 時計回りに45度回転 */
     CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI/4);
     [self setTransform:transform];
@@ -116,17 +120,47 @@
 {
     NSDictionary *dic = [timer userInfo];
     DMCrookedSwipeView *swipedView = [dic objectForKey:@"view"];
-    moveX = 5;
-    moveY = 5;
     
     if (swipedView.tag == 1) {
         swipedView.center = CGPointMake(swipedView.center.x + moveX, swipedView.center.y - moveY);
+        // ballと横壁の当たり判定
+        if(swipedView.center.x - swipedView.bounds.size.width / 2 < 0) moveX = - moveX;
+        if(swipedView.center.x + swipedView.bounds.size.width / 2 >320) moveX = - moveX;
+        
+        //上下の壁との当たり判定
+        if(swipedView.center.y - swipedView.bounds.size.height / 2 < 124) moveY = - moveY;
+        if(swipedView.center.y + swipedView.bounds.size.height / 2 > 444) moveY = - moveY;
+        
+        
     }else if (swipedView.tag == 2){
         swipedView.center = CGPointMake(swipedView.center.x + moveX, swipedView.center.y + moveY);
+        // ballと横壁の当たり判定
+        if(swipedView.center.x - swipedView.bounds.size.width / 2 < 0) moveX = - moveX;
+        if(swipedView.center.x + swipedView.bounds.size.width / 2 > 320) moveX = - moveX;
+        
+        //上下の壁との当たり判定
+        if(swipedView.center.y - swipedView.bounds.size.height / 2 < 124) moveY = - moveY;
+        if(swipedView.center.y + swipedView.bounds.size.height / 2 > 444) moveY = - moveY;
+        
     }else if (swipedView.tag == 3){
         swipedView.center = CGPointMake(swipedView.center.x - moveX, swipedView.center.y + moveY);
+        // ballと横壁の当たり判定
+        if(swipedView.center.x - swipedView.bounds.size.width / 2 < 0) moveX = - moveX;
+        if(swipedView.center.x + swipedView.bounds.size.width / 2 > 320) moveX = - moveX;
+        
+        //上下の壁との当たり判定
+        if(swipedView.center.y - swipedView.bounds.size.height / 2 < 124) moveY = - moveY;
+        if(swipedView.center.y + swipedView.bounds.size.height / 2 > 444) moveY = - moveY;
+        
     }else if (swipedView.tag == 4){
         swipedView.center = CGPointMake(swipedView.center.x - moveX, swipedView.center.y - moveY);
+        // ballと横壁の当たり判定
+        if(swipedView.center.x - swipedView.bounds.size.width / 2 < 0) moveX = - moveX;
+        if(swipedView.center.x + swipedView.bounds.size.width / 2 > 320) moveX = - moveX;
+        
+        //上下の壁との当たり判定
+        if(swipedView.center.y - swipedView.bounds.size.height / 2 < 124) moveY = - moveY;
+        if(swipedView.center.y + swipedView.bounds.size.height / 2 > 444) moveY = - moveY;
     }
 }
 
